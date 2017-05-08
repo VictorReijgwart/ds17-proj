@@ -12,9 +12,9 @@ import code
 
 ## Settings
 # Search terms of interest
-keyword_set_id = 2 # Set this manually to easily distinguish saved files
-# keyword_list = ['greece','greece bailout','greece debt','greece crisis','greece referendum']
-keyword_list = ['bailout','debt','crisis','referendum','euro dollar']
+keyword_set_id = 1 # Set this manually to easily distinguish saved files
+keyword_list = ['greece','greece bailout','greece debt','greece crisis','greece referendum']
+# keyword_list = ['bailout','debt','crisis','referendum','euro dollar']
 # keyword_list = ['grexit']
 
 # Date range
@@ -50,11 +50,17 @@ pytrends = TrendReq(google_username, google_password, hl='en-US', custom_userage
 ## Loop to pull over entire range
 interest_timeseries = pd.DataFrame()
 date = start_date - dt.timedelta(days=1)
-for i in range(int(np.ceil((end_date-start_date).days/90)+1)):
-    date = date + dt.timedelta(days=90)
+for i in range(int(np.ceil((end_date-start_date).days/89)+1)):
+    date = date + dt.timedelta(days=89)
     timeframe = '{} {}'.format(date - dt.timedelta(89), date if date < end_date else end_date)
     print('Loading trend data for: '+ str(timeframe))
     pytrends.build_payload(kw_list=keyword_list, timeframe=timeframe)#, cat=category, geo=geo, gprop=google_product)
+
+    # Remove normalization
+    if i == 0:
+        print i
+        # interest_timeseries
+
     interest_timeseries = pd.concat([interest_timeseries, pytrends.interest_over_time()])
 
 ## Save to file
