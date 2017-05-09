@@ -49,7 +49,7 @@ def split_data(data, val_size=0.1, test_size=0.1):
     return df_train, df_val, df_test
 
 
-def prepare_data(data, time_steps, labels=False, val_size=0.3, test_size=0.3):
+def prepare_data(data, time_steps, labels=False, val_size=0.0, test_size=0.008):
     """
     Given the number of `time_steps` and some data,
     prepares training, validation and test data for an lstm cell.
