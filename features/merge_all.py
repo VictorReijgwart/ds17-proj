@@ -11,7 +11,7 @@ import datetime
 featureFile = 'clean_data/GDELT_I/ire_esp_prt_cyp_ita_brussels_strassburg_frankfurt.csv'
 targetFile = 'clean_data/From2007.csv'
 
-dstFile = 'features/merged.csv'
+dstFile = 'features/merged_extended.csv'
 
 lags = 5
 
